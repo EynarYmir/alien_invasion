@@ -18,6 +18,7 @@ class Ship():
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
         self.center = float(self.rect.centerx)
+        
         # Флаги перемещения
         self.moving_right = False
         self.moving_left = False
@@ -37,3 +38,7 @@ class Ship():
             if self.moving_left and self.rect.left > 0:
                 self.center -= self.ai_settings.ship_speed_factor
         self.rect.centerx = self.center
+        
+    def center_ship(self):
+        """Расмещает корабль в центре нижней стороны"""
+        self.center = self.screen_rect.centerx
