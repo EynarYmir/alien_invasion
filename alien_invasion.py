@@ -4,6 +4,8 @@ import pygame
 from settings import Settings
 from ship import Ship
 from game_stats import GameStats
+from button import Button
+
 import game_functions as gf
 from pygame.sprite import Group
 
@@ -31,15 +33,22 @@ def run_game():
     # Назначениие цвета фона.
     bg_color = (230, 230, 230)
     
+    # Создание кнопки Play
+    play_button = Button(ai_settings, screen, "Play")
+    
     # Запуск основного цикла игры
     while True:
-        gf.check_events(ai_settings, screen, ship, bullets)
-        ship.update()
-        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
-        gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
-        print(len(bullets))
+        gf.check_events(ai_settings, stats, play_button, screen, ship, aliens,
+            bullets)
+        
+        if stats.game_active:
+            ship.update()
+            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            gf.update_screen(ai_settings, screen, aliens, ship, bullets)
+        else:
+            play_button.draw_button()
         # При каждом проходе цикла перерисовывается экран.
-        gf.update_screen(ai_settings, screen, aliens, ship, bullets)
         """Отображение последнего проприсованного экрана"""
         pygame.display.flip()
 
