@@ -15,7 +15,7 @@ class Settings():
         self.fleet_drop_speed = 10
 
         # Параметры пули
-        self.bullet_width = 1000
+        self.bullet_width = 4
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
         self.bullets_allowed = 4
@@ -33,6 +33,7 @@ class Settings():
         # fleet_direction = 1 обозначает движение вправо,
         # -1 обозначает движение влево
         self.fleet_direction = 1
+        self.alien_points = 50
         
     def increase_speed(self):
         """Инициализирует настройки скорости."""
